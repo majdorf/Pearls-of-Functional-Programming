@@ -57,6 +57,12 @@ find (u,v) (r,s) f z
 		          ( if f p q == z then (p,q):find (p + 1, q - 1) (r,s) f z
 				   else find (p + 1, q) (r,s) f z )
 
-
+invert2::(Int->Int->Int)->Int->[(Int,Int)]
+invert2 f z = find (0,m)  (n,0) f z
+	where 
+		m = bsearch (\y-> f 0 y) (-1, z + 1) z 
+		n = bsearch (\x-> f x 0) (-1, z + 1) z
+		   
+				   
 f0::Int->Int->Int
 f0 x y = (2^y) * ( 2 * x + 1) - 1
