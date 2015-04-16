@@ -101,5 +101,5 @@ smallestA k (xa,ya) = searchA k (0,m+1) (0,n+1)
 				(True,False)-> searchA (k-mx-1) (mx,rx) (ly,ry)
 				(False,True)-> searchA k (lx,mx) (ly,ry)
 				(False,False)-> searchA (k - my -1) (lx,rx) (my,ry)
-				where mx = (lx +rx `div` 2); my = (ly+ry) `div` 2
+				where mx = (lx + rx) `div` 2; my = (ly+ry) `div` 2
 
