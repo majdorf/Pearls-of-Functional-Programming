@@ -1,5 +1,6 @@
 import Data.Array
 
+
 tails :: [a] -> [[a]]
 tails [] = []
 tails (x:xs) = (x:xs):tails xs
@@ -98,8 +99,9 @@ smallestA k (xa,ya) = searchA k (0,m+1) (0,n+1)
 			| ly == ry  = xa ! k
 			| otherwise = case (xa ! mx < ya! my, k <= mx+my ) of
 				(True,True)-> searchA k (lx,rx) (ly,my)
-				(True,False)-> searchA (k-mx-1) (mx,rx) (ly,ry)
+				(True,False)-> searchA (k - mx - 1) (mx,rx) (ly,ry)
 				(False,True)-> searchA k (lx,mx) (ly,ry)
-				(False,False)-> searchA (k - my -1) (lx,rx) (my,ry)
-				where mx = (lx + rx) `div` 2; my = (ly+ry) `div` 2
+				(False,False)-> searchA (k - my - 1) (lx,rx) (my,ry)
+				where mx = (lx + rx) `div` 2; my = (ly + ry) `div` 2
+
 
