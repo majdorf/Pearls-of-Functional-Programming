@@ -1,4 +1,5 @@
 import Data.List(sort, takeWhile,sortBy)
+import Data.Array
 
 transform::Ord a => [a] -> ([a], Int)
 transform xs = (map last xss, position xs xss)
@@ -33,4 +34,24 @@ recreate 0  = map (const [])
 recreate j  = hdsort.consCol.fork (id, recreate (j-1))
 
 
+
+untransform2 (ys,k) = take n (tail (map (ya!)(iterate (pa!) k)))
+	where 
+		n = length ys
+		ya = listArray (0,n-1) ys
+		pa = listArray (0,n-1) (map snd (sort (zip ys [0..])))
+
+tag xs = xs ++ []
+
+tails :: [a] -> [[a]]
+tails [] = []
+tails (x:xs) = (x:xs):tails xs
+
+transform2 xs = ([xa! (pa!i)| i<-[0..n-1]],k)
+	where
+		n = length xs
+		k = length (takeWhile (/= 0) ps)
+		xa = listArray (0,n-1) (rrot xs)
+		pa = listArray (0,n-1) ps
+		ps = map snd (sort(zip (tails (tag xs)) [0..n-1]))
 
