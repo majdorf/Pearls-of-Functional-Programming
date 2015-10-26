@@ -29,3 +29,4 @@ hub ws ((x,xs):xss) =
 		(us,vs) = split x ws
 		eus = elems us
 		yss = [(x,xs)| (x,xs) <- xss, not (member x us)]
+ 
