@@ -32,7 +32,12 @@ nonseg = (N == ).(foldl step E).map snd
 
 
 --second solution
---mnss2 xs = fourth (foldl h (start (take 3 xs)) (drop 3 xs))
---start [x,y,z] = (0, max [x+y+z,y+z,z], max [x, x+y, y], x + z)
+h::(Int,Int,Int,Int)->(Int)->(Int,Int,Int,Int)
+h (e,s,m,n) x = (e, (s `max` e) + x, m `max` s, n `max` (( n `max` m) + x))
+mnss2::[Int]->(Int)
+mnss2 xs = fourth (foldl h (start (take 3 xs)) (drop 3 xs))
+start [x,y,z] = (0, maximum [x+y+z,y+z,z], maximum [x, x+y, y], x + z)
+fourth (_,_, _, x) = x
+
 
 
